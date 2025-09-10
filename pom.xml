@@ -28,6 +28,7 @@
         <commons-lang3.version>3.17.0</commons-lang3.version>
         <lombok.version>1.18.34</lombok.version>
         <maven.plugin.version>3.8.1</maven.plugin.version>
+        <spring-boot-maven-plugin.version>3.5.5</spring-boot-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -138,16 +139,21 @@
     </dependencyManagement>
     <build>
         <plugins>
-        <!-- 编译 -->
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.plugin.version}</version>
-            <configuration>
-                <source>${java.version}</source>
-                <target>${java.version}</target>
-            </configuration>
-        </plugin>
+            <!-- 编译 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot-maven-plugin.version}</version>
+            </plugin>
         </plugins>
     </build>
 </project>
