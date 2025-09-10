@@ -15,7 +15,7 @@
 */
 package com.x.mcp.server;
 
-import com.x.mcp.server.utils.JsonUtil;
+import com.x.framework.common.util.JsonUtil;
 import io.modelcontextprotocol.client.McpClient;
 import io.modelcontextprotocol.spec.McpClientTransport;
 import io.modelcontextprotocol.spec.McpSchema.CallToolRequest;
