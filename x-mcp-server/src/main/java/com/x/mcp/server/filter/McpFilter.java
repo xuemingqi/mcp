@@ -63,7 +63,7 @@ public class McpFilter implements WebFilter {
             log.info("Headers: {}", originalRequest.getHeaders());
             log.info("Query Params: {}", queryParams);
             Users user = null;
-            if (path.equals("/sse")) {
+            if ("/sse".equals(path)) {
                 String key = queryParams.getFirst(CommonConstant.KEY);
                 log.info("Key: {}", key);
                 user = usersIService.lambdaQuery()

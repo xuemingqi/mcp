@@ -1,1 +1,6 @@
 com.x.framework.redis.conf.RedissonConfig
+com.x.framework.redis.property.RedissonClusterProperty
+com.x.framework.redis.property.RedissonMasterSlaveProperty
+com.x.framework.redis.property.RedissonSingleProperty
+com.x.framework.redis.type.RedissonType
+com.x.framework.redis.type.RedissonTypeConverter
