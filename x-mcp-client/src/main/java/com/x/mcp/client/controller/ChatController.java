@@ -1,6 +1,10 @@
 package com.x.mcp.client.controller;
 
 import jakarta.annotation.Resource;
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.ChatMemoryRepository;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
+import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.deepseek.DeepSeekChatModel;
@@ -24,13 +28,25 @@ public class ChatController {
     @Resource
     private ToolCallbackProvider provider;
 
+    @Resource
+    private ChatMemoryRepository chatMemoryRepository;
+
     @GetMapping("/chat")
-    public String chat(@RequestParam("question") String question) {
+    public String chat(@RequestParam("question") String question, @RequestParam("conversationId") String conversationId) {
+        ChatMemory chatMemory = MessageWindowChatMemory.builder()
+                .chatMemoryRepository(chatMemoryRepository)
+                .maxMessages(100)
+                .build();
+
         ToolCallback[] tools = provider.getToolCallbacks();
         ChatOptions chatOptions = DeepSeekChatOptions.builder()
                 .toolCallbacks(tools)
                 .build();
-        Prompt prompt = new Prompt(question, chatOptions);
+
+        UserMessage message = new UserMessage(question);
+        chatMemory.add(conversationId, message);
+        Prompt prompt = new Prompt(chatMemory.get(conversationId), chatOptions);
+
         return deepSeekChatModel.call(prompt).getResult().getOutput().getText();
     }
 

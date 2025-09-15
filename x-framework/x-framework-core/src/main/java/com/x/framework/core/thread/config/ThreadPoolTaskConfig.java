@@ -36,7 +36,7 @@ public class ThreadPoolTaskConfig {
     private static final String THREAD_NAME_PREFIX = "x-async-thread-";
 
     @Bean
-    public ThreadPoolTaskExecutor taskExecutor() {
+    public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         //核心线程数
         executor.setCorePoolSize(CORE_POOL_SIZE);
