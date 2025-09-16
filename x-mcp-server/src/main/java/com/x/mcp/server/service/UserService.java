@@ -16,6 +16,5 @@ public interface UserService {
      *
      * @return 用户列表
      */
-    @Async("threadPoolTaskExecutor")
     List<User> getUserList();
 }
