@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8083
 spring:
   ai:
     mcp:
@@ -7,10 +7,17 @@ spring:
         toolcallback:
           enabled: true
         name: x-mcp-client
-        sse:
-          connections:
-            server1:
-              url: http://127.0.0.1:8081
-              sse-endpoint: sse?key=sk-e7030e17d1d64881a44a53b359af1644
+#        sse:
+#          connections:
+#            server1:
+#              url: http://127.0.0.1:18081
+#              sse-endpoint: /sse?key=sk-123456
     deepseek:
-      api-key: sk-e6030e27a1d64881a44a53b3f9af1384
+      api-key: sk-123456
+
+mcp:
+  sse:
+    connections:
+      server1:
+        url: http://127.0.0.1:18081
+        sse-endpoint: /sse?key=sk-123456

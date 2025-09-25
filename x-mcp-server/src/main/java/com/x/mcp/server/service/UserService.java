@@ -1,7 +1,6 @@
 package com.x.mcp.server.service;
 
 import com.x.mcp.server.db.entity.User;
-import org.springframework.scheduling.annotation.Async;
 
 import java.util.List;
 

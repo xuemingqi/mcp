@@ -26,7 +26,8 @@ public class ChatController {
     private DeepSeekChatModel deepSeekChatModel;
 
     @Resource
-    private ToolCallbackProvider provider;
+    private ToolCallbackProvider toolCallbackProvider;
+
 
     @Resource
     private ChatMemoryRepository chatMemoryRepository;
@@ -38,7 +39,22 @@ public class ChatController {
                 .maxMessages(100)
                 .build();
 
-        ToolCallback[] tools = provider.getToolCallbacks();
+//        HttpClientSseClientTransport server1 = HttpClientSseClientTransport.builder("http://127.0.0.1:18081")
+//                .sseEndpoint("/sse?key=sk-e7030e17d1d64881a44a53b359af1644")
+//                .build();
+//        McpSyncClient client1 = McpClient.sync(server1).build();
+//        client1.initialize();
+//        client1.ping();
+//
+//        List<McpSyncClient> mcpClients = new ArrayList<>();
+//        mcpClients.add(client1);
+//
+//        ToolCallbackProvider toolCallbackProvider = new SyncMcpToolCallbackProvider(mcpClients);
+
+        ToolCallback[] tools = toolCallbackProvider.getToolCallbacks();
+        for (ToolCallback tool : tools){
+            tool.getToolDefinition().name();
+        }
         ChatOptions chatOptions = DeepSeekChatOptions.builder()
                 .toolCallbacks(tools)
                 .build();
@@ -49,5 +65,7 @@ public class ChatController {
 
         return deepSeekChatModel.call(prompt).getResult().getOutput().getText();
     }
+
+
 
 }
