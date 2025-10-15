@@ -24,12 +24,12 @@ import org.springframework.web.reactive.function.client.WebClient;
  */
 public class ClientSse {
 
-	private static final String MCP_SERVER_URL = "http://localhost:8081";
-
-
 	public static void main(String[] args) {
-		var transport = new WebFluxSseClientTransport(WebClient.builder().baseUrl(MCP_SERVER_URL));
-		new SampleClient(transport).run();
+        WebClient.Builder webclientBuilder = WebClient.builder().baseUrl("http://127.0.0.1:8081");
+        WebFluxSseClientTransport clientTransport = WebFluxSseClientTransport.builder(webclientBuilder)
+                .sseEndpoint("sse?key=sk-e7030e17d1d64881a44a53b359af1644")
+                .build();
+		new SampleClient(clientTransport).run();
 	}
 
 }
