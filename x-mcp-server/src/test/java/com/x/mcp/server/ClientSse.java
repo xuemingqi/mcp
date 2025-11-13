@@ -25,7 +25,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class ClientSse {
 
 	public static void main(String[] args) {
-        WebClient.Builder webclientBuilder = WebClient.builder().baseUrl("http://127.0.0.1:8081");
+        WebClient.Builder webclientBuilder = WebClient.builder().baseUrl("http://127.0.0.1:8081/");
         WebFluxSseClientTransport clientTransport = WebFluxSseClientTransport.builder(webclientBuilder)
                 .sseEndpoint("sse?key=sk-e7030e17d1d64881a44a53b359af1644")
                 .build();

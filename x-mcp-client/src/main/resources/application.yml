@@ -18,6 +18,8 @@ spring:
       chat:
         base-url: https://api.deepseek.com
         completions-path: /v1/chat/completions
+        options:
+          model: deepseek-chat
       api-key: sk-413c6606010c4852939181278ed7e4a2
 
 mcp:
