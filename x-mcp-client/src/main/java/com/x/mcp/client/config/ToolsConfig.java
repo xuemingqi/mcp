@@ -35,6 +35,8 @@ public class ToolsConfig {
             client.ping();
             mcpClients.add(client);
         });
-        return new SyncMcpToolCallbackProvider(mcpClients);
+        return new SyncMcpToolCallbackProvider.Builder()
+                .mcpClients(mcpClients)
+                .build();
     }
 }
